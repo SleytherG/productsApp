@@ -6,8 +6,9 @@ import {PagesRoutingModule} from "./pages-routing.module";
 import { PagesComponent } from './pages.component';
 import {MatButtonModule} from "@angular/material/button";
 import { AddProductComponent } from './add-edit-product/add-product.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { EditProductComponent } from './edit-product/edit-product.component';
+import {FilterPipe} from "../pipes/filter.pipe";
 
 
 
@@ -16,7 +17,8 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     ListProductsComponent,
     PagesComponent,
     AddProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    FilterPipe
   ],
   exports: [
     ListProductsComponent
@@ -25,7 +27,8 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     CommonModule,
     MaterialModule,
     PagesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
   ]
 })
 export class PagesModule { }

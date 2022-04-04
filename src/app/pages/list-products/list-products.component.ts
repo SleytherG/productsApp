@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../../services/product.service";
 import {Router} from "@angular/router";
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-products',
@@ -16,6 +17,8 @@ export class ListProductsComponent implements OnInit {
 
   products: any[] = [];
 
+  filterpost: string = '';
+
   constructor(
     private productService: ProductService,
     private router: Router
@@ -30,7 +33,7 @@ export class ListProductsComponent implements OnInit {
     )
 
     this.cols = [
-      { field: 'Nombre del Producto', header: ''}
+      { field: 'Nombre del Producto', header: 'nombre'}
     ]
   }
 
@@ -42,12 +45,17 @@ export class ListProductsComponent implements OnInit {
     this.productService.deleteProduct( id )
       .subscribe( res => {
           if ( res === true ) {
-            console.log('PRODUCTO ELIMINADO');
-
-          this.productService.getProducts().subscribe( (res: any) => {
-              this.products = res;
-            }
-          );
+            swal.fire({
+              title: "Producto Eliminado Correctamente",
+              icon: "success",
+              showConfirmButton: true,
+              confirmButtonText: "Ok",
+            }).then(() => {
+                this.productService.getProducts().subscribe( (res: any) => {
+                    this.products = res;
+                  }
+              );
+            })
           }
     });
   }

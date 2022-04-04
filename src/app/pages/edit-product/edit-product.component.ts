@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ProductService} from "../../services/product.service";
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-edit-product',
@@ -56,8 +57,14 @@ export class EditProductComponent implements OnInit {
       .subscribe(
         resp => {
           if ( resp === true ) {
-            console.log('Producto Editado!!')
-            this.router.navigate(['/products/lista'])
+            swal.fire({
+              title: "Producto Editado Correctamente",
+              icon: "success",
+              showConfirmButton: true,
+              confirmButtonText: "Ok",
+            }).then(() => {
+                this.router.navigate(['/products/lista']);
+            })
           }
         }
       );

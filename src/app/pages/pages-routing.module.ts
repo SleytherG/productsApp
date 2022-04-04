@@ -13,7 +13,7 @@ const routes: Routes = [
       { path: 'lista' , component: ListProductsComponent },
       { path: 'add', component: AddProductComponent },
       { path: 'edit/:id', component: EditProductComponent },
-      // { path: '**' , redirectTo: 'lista' },
+      { path: '**' , redirectTo: 'lista' },
     ]
   }
 ];
